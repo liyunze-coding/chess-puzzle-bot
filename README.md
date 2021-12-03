@@ -14,8 +14,7 @@ in terminal / command prompt.
 
 ## Demo
 
-Demonstration of the script
-<video width='500px'><source src='chess_puzzle_bot_demo.mov'></video>
+<a href='https://imgur.com/a/3VplSAH'>Demonstration of the script vs Grand Master bot on lichess</a>
 
 ---
 
