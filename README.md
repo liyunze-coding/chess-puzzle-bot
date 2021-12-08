@@ -1,4 +1,4 @@
-# chess-playing bot
+# chess puzzle solving bot
 
 ### version 1.0.0
 
@@ -9,12 +9,6 @@ install requirements via
 `pip install -r requirements.txt`
 
 in terminal / command prompt.
-
----
-
-## Demo
-
-<a href='https://imgur.com/a/3VplSAH'>Demonstration of the script vs Grand Master bot on lichess</a>
 
 ---
 
