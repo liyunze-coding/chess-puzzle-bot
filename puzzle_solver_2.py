@@ -24,7 +24,6 @@ I encourage the usage of this bot to play against another bot.
 # bounding area of the chess board (top left x, top left y, bottom right x, bottom right y)
 board_bbox = (554, 200, 1275, 921)
 playing_color_bbox = (1348, 721, 1398, 771)
-length = (board_bbox[2] - board_bbox[0])//8  # length of each square
 
 # 442,924 flip board button
 
@@ -118,6 +117,7 @@ def waiting_to_start():
 
 
 def play_move(player_color, before, after, is_pawn):
+    length = round((board_bbox[2] - board_bbox[0]) / 8)
     before_column = before[0]
     before_row = before[1]
 
@@ -178,6 +178,9 @@ async def main():
         ascii_board += ' b KQkq'
 
     board = chess.Board(ascii_board)
+    if play_as == 'black':
+        board.apply_transform(chess.flip_vertical)
+        board.apply_transform(chess.flip_horizontal)
     print(board)
     while not board.is_game_over():
         result = await engine.play(board, chess.engine.Limit(depth=20))
@@ -190,7 +193,7 @@ async def main():
 
         is_pawn = str(before_piece).lower() == 'p'
 
-        play_move('white', before_pos, after_pos, is_pawn)
+        play_move(play_as, before_pos, after_pos, is_pawn)
         print(board)
 
         board.push(result.move)
@@ -201,8 +204,8 @@ async def main():
 
         if play_as is None:
             play_as = original_color
-        elif play_as != original_color:
-            ptg.click(442, 924)
+        # elif play_as != original_color:
+            #ptg.click(442, 924)
 
         original_color = play_as
 
@@ -214,6 +217,9 @@ async def main():
         else:
             ascii_board += ' b KQkq'
         board = chess.Board(ascii_board)
+        if play_as == 'black':
+            board.apply_transform(chess.flip_vertical)
+            board.apply_transform(chess.flip_horizontal)
 
 
 if __name__ == '__main__':
